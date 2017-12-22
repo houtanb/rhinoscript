@@ -1,0 +1,26 @@
+Option Explicit
+'Script written by Houtan Bastani
+'Script copyrighted by Houtan Bastani
+
+'This function rotates all shapes specified by the user about
+'a point specified by the user. Rotation is done in all
+'three directions for each shape.
+
+Call Main()
+Sub Main()
+	Dim obj, objs, box, center, xyp
+	objs = Rhino.GetObjects("Which Objects should we rotate", 0, True, True)
+	If IsArray(objs) Then
+		center = Rhino.GetPoint("About which point?")
+		For Each obj In objs
+			box = Rhino.BoundingBox(obj)
+			If IsArray(box) Then
+				Randomize
+				xyp = Rhino.WorldXYPlane()
+				Rhino.RotateObject obj, center, Rnd * 360, xyp(1)
+				Rhino.RotateObject obj, center, Rnd * 360, xyp(2)
+				Rhino.RotateObject obj, center, Rnd * 360, xyp(3)
+			End If
+		Next
+	End If
+End Sub
