@@ -14,8 +14,9 @@ def rotateObjects():
     objs = rs.GetObjects("Select objects")
     if objs is None: return
 
-    rs.UnselectObjects(objs)
     center = rs.GetPoint("About which point?")
+    if center is None: return
+
     for obj in objs:
         box = rs.BoundingBox(obj)
         if not isinstance(box, list): return
