@@ -2,17 +2,17 @@ import rhinoscriptsyntax as rs
 from random import *
 
 '''
-# Duplicates an object N times around a point 
+# Duplicates an object N times around a point
 #
 # Copyright Houtan Bastani
 # License GPLv3
 '''
 
 def duplicateN():
-    obj = rs.GetObject("Select object to duplicate", 16, True)
-    if obj is None: return
+    obj_ids = rs.GetObjects("Select object(s) to duplicate", 0, True, True)
+    if obj_ids is None: return
 
-    box = rs.BoundingBox(obj)
+    box = rs.BoundingBox(obj_ids)
     if not isinstance(box, list): return
     origin = rs.PointDivide(rs.PointAdd(box[0], box[6]), 2)
 
@@ -28,7 +28,7 @@ def duplicateN():
         newpt = [xr*maxd, yr*maxd, zr*maxd]
         translation1 = rs.VectorCreate(endpt, newpt)
         translation2 = rs.VectorCreate(translation1, origin)
-        rs.CopyObject(obj, translation2)
+        rs.CopyObjects(obj_ids, translation2)
 
 if( __name__ == "__main__" ):
     duplicateN()
