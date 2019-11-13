@@ -7,24 +7,21 @@ from random import *
 # three directions for each shape.
 #
 # Copyright Houtan Bastani
+# 2017-2019
 # License GPLv3
 '''
 
 def rotateObjects():
-    objs = rs.GetObjects("Select objects")
-    if objs is None: return
+    obj_ids = rs.GetObjects("Select objects", 0, True, True)
+    if obj_ids is None: return
 
     center = rs.GetPoint("About which point?")
     if center is None: return
 
-    for obj in objs:
-        box = rs.BoundingBox(obj)
-        if not isinstance(box, list): return
-
-        xyp = rs.WorldXYPlane()
-        rs.RotateObject(obj, center, random() * 360, xyp[0])
-        rs.RotateObject(obj, center, random() * 360, xyp[1])
-        rs.RotateObject(obj, center, random() * 360, xyp[2])
+    xyp = rs.WorldXYPlane()
+    rs.RotateObjects(obj_ids, center, random() * 360, xyp[0])
+    rs.RotateObjects(obj_ids, center, random() * 360, xyp[1])
+    rs.RotateObjects(obj_ids, center, random() * 360, xyp[2])
 
 if( __name__ == "__main__" ):
     rotateObjects()

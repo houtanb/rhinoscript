@@ -5,6 +5,7 @@ from random import *
 # Duplicates an object N times around a point
 #
 # Copyright Houtan Bastani
+# 2017-2019
 # License GPLv3
 '''
 
