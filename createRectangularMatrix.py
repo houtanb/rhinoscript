@@ -3,16 +3,16 @@ from random import *
 import pprint
 
 '''
-# Creates a matrix given an object or set of objects around a point, which serves as the lower corner
-# Given a percentage, randomly creates matrix. Replications, Spacing, Rotation, Deformation all changed
+# Creates a rectangular matrix given an object or set of objects around a point, which serves as the lower corner
+# Given a percentage, randomly creates rectangular matrix. Replications, Spacing, Rotation, Deformation all changed
 #
 # Copyright 2019 Houtan Bastani
 '''
 
-def createMatrix():
-    print("\n createMatrix commands \n")
+def createRectangularMatrix():
+    print("\n createRectangularMatrix commands \n")
 
-    obj_ids = rs.GetObjects("Select object(s) from which to create matrix", 0, True, True)
+    obj_ids = rs.GetObjects("Select object(s) from which to create the rectangular matrix", 0, True, True)
     if obj_ids is None: return
 
     box = rs.BoundingBox(obj_ids)
@@ -92,4 +92,4 @@ def createMatrix():
                     rs.RotateObject(obj, newpt, zrotate, plane.ZAxis)
 
 if( __name__ == "__main__" ):
-    createMatrix()
+    createRectangularMatrix()
